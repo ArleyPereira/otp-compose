@@ -54,6 +54,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.composeuisuite.ohteepee.configuration.OhTeePeeCellBackground
 import com.composeuisuite.ohteepee.configuration.OhTeePeeErrorAnimationConfig
+import com.composeuisuite.ohteepee.sample.R
 import com.composeuisuite.ohteepee.ui.theme.OtpFieldTheme
 
 class MainActivity : ComponentActivity() {
