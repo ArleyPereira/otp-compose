@@ -61,10 +61,17 @@ object OhTeePeeDefaults {
         errorAnimationConfig = errorAnimationConfig,
     )
 
+    /**
+     * Kept for callers that configure a plain background colour. [backgroundColor] deliberately has
+     * no default value: with one, every call that names neither [backgroundColor] nor
+     * [OhTeePeeCellBackground] — including `cellConfiguration()` itself — matches this overload and
+     * the [OhTeePeeCellBackground] one equally well, which Kotlin rejects as an overload resolution
+     * ambiguity.
+     */
     @Composable
     fun cellConfiguration(
+        backgroundColor: Color,
         shape: Shape = MaterialTheme.shapes.medium,
-        backgroundColor: Color = MaterialTheme.colors.surface,
         borderColor: Color = MaterialTheme.colors.primary,
         borderWidth: Dp = BORDER_WIDTH,
         textStyle: TextStyle = TextStyle(),
