@@ -15,14 +15,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.text.input.ImeAction
@@ -38,6 +37,13 @@ import com.composeuisuite.ohteepee.utils.EMPTY
 import com.composeuisuite.ohteepee.utils.requestFocusSafely
 
 private const val NOT_ENTERED_VALUE = '₺'
+
+/**
+ * A request to focus [cellIndex]. Every request is a distinct instance so that
+ * asking for the same cell twice in a row still restarts the effect that
+ * performs it.
+ */
+private class PendingFocusRequest(val cellIndex: Int)
 
 /**
  * OhTeePeeInput is a composable that can be used to get OTP/Pin from user.
@@ -126,7 +132,6 @@ fun OhTeePeeInput(
         )
         mutableStateOf(charArray)
     }
-    val focusManager = LocalFocusManager.current
     val focusRequester = remember(cellsCount) { List(cellsCount) { FocusRequester() } }
     val transparentTextSelectionColors: TextSelectionColors = remember {
         TextSelectionColors(
@@ -142,15 +147,24 @@ fun OhTeePeeInput(
         }
     }
 
+    // Focus is never moved straight from the value change callback: while the
+    // IME is still delivering the current input, Compose tears the input
+    // session of the cell that loses focus down and starts the next one in a
+    // separate pass, which hides and re-opens the soft keyboard on every
+    // keystroke. Recording the request as state and honouring it from an
+    // effect moves the focus after that input has been processed, so the
+    // keyboard stays up.
+    var pendingFocusRequest: PendingFocusRequest? by remember { mutableStateOf(null) }
+
+    LaunchedEffect(pendingFocusRequest) {
+        val targetIndex = pendingFocusRequest?.cellIndex ?: return@LaunchedEffect
+        focusRequester.getOrNull(targetIndex)?.requestFocusSafely()
+    }
+
     fun moveFocus(currentIndex: Int, targetIndex: Int) {
         if (currentIndex == targetIndex || targetIndex !in (0 until cellsCount)) return
 
-        val direction = if (targetIndex > currentIndex) {
-            FocusDirection.Next
-        } else {
-            FocusDirection.Previous
-        }
-        focusManager.moveFocus(direction)
+        pendingFocusRequest = PendingFocusRequest(targetIndex)
     }
 
     if (autoFocusByDefault) {
@@ -206,7 +220,6 @@ fun OhTeePeeInput(
                 obscureText = obscureText,
                 cellsCount = cellsCount,
                 onValueChange = onValueChange,
-                focusRequester = focusRequester,
                 placeHolderAsChar = placeHolderAsChar,
                 moveFocus = ::moveFocus,
             )
@@ -330,7 +343,6 @@ private fun handleCellInputChange(
     obscureText: String,
     cellsCount: Int,
     onValueChange: (newValue: String, isValid: Boolean) -> Unit,
-    focusRequester: List<FocusRequester>,
     placeHolderAsChar: Char,
     moveFocus: (currentIndex: Int, targetIndex: Int) -> Unit,
 ) {
@@ -344,7 +356,7 @@ private fun handleCellInputChange(
 
     if (formattedNewValue.length == cellsCount) {
         onValueChange(formattedNewValue, true)
-        focusRequester.last().requestFocusSafely()
+        moveFocus(currentCellIndex, cellsCount - 1)
         return
     }
 
