@@ -4,3 +4,10 @@ root = true
 ij_kotlin_allow_trailing_comma_on_call_site = true
 ij_kotlin_allow_trailing_comma = true
 max_line_length = 120
+
+# KtLint 1.x defaults to the `ktlint_official` code style, whose extra rules the
+# existing sources predate. Keep the IntelliJ style the project was written in so
+# upgrading the plugin does not require reformatting every file.
+ktlint_code_style = intellij_idea
+# Composables are intentionally PascalCase.
+ktlint_function_naming_ignore_when_annotated_with = Composable

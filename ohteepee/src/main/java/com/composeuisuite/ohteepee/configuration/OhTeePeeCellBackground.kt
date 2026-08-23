@@ -14,14 +14,10 @@ sealed class OhTeePeeCellBackground {
         val alpha: Float = 1f,
     ) : OhTeePeeCellBackground()
 
-    data class Solid(
-        val color: Color,
-    ) : OhTeePeeCellBackground()
+    data class Solid(val color: Color) : OhTeePeeCellBackground()
 }
 
-internal fun Modifier.cellBackground(
-    background: OhTeePeeCellBackground,
-): Modifier {
+internal fun Modifier.cellBackground(background: OhTeePeeCellBackground): Modifier {
     val backgroundModifier = when (background) {
         is OhTeePeeCellBackground.Gradient -> {
             this.background(brush = background.brush, alpha = background.alpha)

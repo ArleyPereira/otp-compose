@@ -18,10 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-internal fun BasicOhTeePeeTestScreen(
-    ohTeePeeInput: @Composable () -> Unit,
-    modifier: Modifier = Modifier,
-) {
+internal fun BasicOhTeePeeTestScreen(ohTeePeeInput: @Composable () -> Unit, modifier: Modifier = Modifier) {
     val backgroundColor = Color(0xFF1A1E22)
 
     Column(

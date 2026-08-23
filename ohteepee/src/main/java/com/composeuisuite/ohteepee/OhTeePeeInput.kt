@@ -310,11 +310,7 @@ private fun OhTeePeeInput(
     }
 }
 
-private fun getOtpValueCharArray(
-    cellsCount: Int,
-    shouldClearInput: Boolean,
-    value: String,
-): CharArray {
+private fun getOtpValueCharArray(cellsCount: Int, shouldClearInput: Boolean, value: String): CharArray {
     val charList = CharArray(cellsCount) { index ->
         if (shouldClearInput) {
             NOT_ENTERED_VALUE
@@ -368,6 +364,5 @@ private fun handleCellInputChange(
     onValueChange(otpValueAsString, otpValueAsString.none { it == placeHolderAsChar })
 }
 
-private fun getCellDisplayCharacter(
-    currentChar: Char,
-): String = if (currentChar == NOT_ENTERED_VALUE) String.EMPTY else currentChar.toString()
+private fun getCellDisplayCharacter(currentChar: Char): String =
+    if (currentChar == NOT_ENTERED_VALUE) String.EMPTY else currentChar.toString()

@@ -212,11 +212,7 @@ private fun getCellConfig(
 }
 
 @Composable
-private fun CellPlaceHolder(
-    placeHolder: String,
-    placeHolderTextStyle: TextStyle,
-    modifier: Modifier = Modifier,
-) {
+private fun CellPlaceHolder(placeHolder: String, placeHolderTextStyle: TextStyle, modifier: Modifier = Modifier) {
     Text(
         text = placeHolder,
         style = placeHolderTextStyle,

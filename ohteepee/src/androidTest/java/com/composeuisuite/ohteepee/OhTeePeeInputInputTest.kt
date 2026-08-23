@@ -134,9 +134,7 @@ class OhTeePeeInputInputTest {
         Assert.assertEquals("Current otp value should be empty", String.EMPTY, currentOtpValue)
     }
 
-    private fun setContentForClearInputTest(
-        onValueChange: (String) -> Unit,
-    ) {
+    private fun setContentForClearInputTest(onValueChange: (String) -> Unit) {
         composeTestRule.setContent {
             var otpValue: String by remember { mutableStateOf("") }
             val defaultConfig = OhTeePeeDefaults.cellConfiguration()
