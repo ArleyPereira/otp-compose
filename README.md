@@ -1,6 +1,31 @@
 ![](ohteepee_cover.png)
 
-# OhTeePee ![latestVersion](https://img.shields.io/github/v/tag/composeuisuite/ohteepee?display_name=tag)
+# OhTeePee ![latestVersion](https://img.shields.io/github/v/tag/ArleyPereira/ohteepee?display_name=tag)
+
+> ## About this fork
+>
+> This is a fork of [composeuisuite/ohteepee](https://github.com/composeuisuite/ohteepee), kept
+> building against current Compose while the upstream repository is inactive. All credit for the
+> library goes to its original authors, listed at the bottom of this README.
+>
+> Changes on top of upstream `1.1.1`:
+>
+> - **Fixed the soft keyboard collapsing and reopening on every keystroke** on Compose 1.12. Focus is
+>   no longer requested from inside the cell's `onValueChange`, which made Compose tear the IME input
+>   session down and start a new one in two separate passes
+>   ([upstream issue](https://github.com/composeuisuite/ohteepee/issues/47))
+> - Build migrated to Gradle version catalogs and upgraded to Gradle 9.5 / AGP 9.3.1 / Kotlin 2.4.10 /
+>   Compose BOM 2026.08.00
+> - Disambiguated the two `OhTeePeeDefaults.cellConfiguration` overloads, which Kotlin 2.4 rejected as
+>   an overload resolution ambiguity — this broke `cellConfiguration()`, the form used in the example
+>   below
+>
+> **Requirements:** `minSdk` 23 (was 21, raised by `androidx.compose` 1.9+) and `compileSdk` 37.
+>
+> Both changes are offered upstream as
+> [#48](https://github.com/composeuisuite/ohteepee/pull/48) and
+> [#49](https://github.com/composeuisuite/ohteepee/pull/49). If they are merged and the original
+> project resumes releases, prefer it over this fork.
 
 ## Demo
 
@@ -28,7 +53,7 @@ repositories {
 Then add OhTeePee dependency to your module build.gradle file.
 
 ```groovy
-implementation "com.github.composeuisuite:ohteepee:$versionName"
+implementation "com.github.ArleyPereira:ohteepee:$versionName"
 ```
 
 ### Usage
@@ -122,6 +147,8 @@ This is just the tip of the iceberg when it comes to customization of OhTeePee l
 
 ## Authors
 
+The original authors of OhTeePee:
+
 **Ilyas Ipek**
 
 - Medium: <a href="https://medium.com/@ilyas_ipek" target="_blank">@ilyasipek</a>
@@ -150,4 +177,8 @@ We are always open to new ideas! To contribute, please check following steps:
 
 ⭐️ Give us a star if this project helped you! ⭐️
 
-### [LICENSE](https://github.com/composeuisuite/ohteepee/blob/develop/LICENSE.md)
+### [LICENSE](LICENSE.md)
+
+OhTeePee is licensed under the Apache License 2.0. This fork keeps that license and the copyright of
+the original authors; the modifications listed at the top of this README are released under the same
+terms.

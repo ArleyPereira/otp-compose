@@ -1,0 +1,9 @@
+# JitPack only reads this file from the repository root.
+#
+# AGP 9 requires JDK 17 or newer, and the build is restricted to the library
+# module: the default JitPack command also assembles the :sample application,
+# which needs a google-services.json and is irrelevant to the published AAR.
+jdk:
+  - openjdk17
+install:
+  - ./gradlew :ohteepee:publishToMavenLocal -Pgroup=com.github.ArleyPereira -Pversion=$VERSION -xtest -xlint
