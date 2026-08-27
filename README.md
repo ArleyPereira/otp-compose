@@ -4,28 +4,12 @@
 
 > ## About this fork
 >
-> This is a fork of [composeuisuite/ohteepee](https://github.com/composeuisuite/ohteepee), kept
-> building against current Compose while the upstream repository is inactive. All credit for the
-> library goes to its original authors, listed at the bottom of this README.
+> A fork of [composeuisuite/ohteepee](https://github.com/composeuisuite/ohteepee), maintained here
+> because the original project is no longer active. It has been modified: the package moved to
+> `br.com.arleypereira.ohteepee`, the soft keyboard no longer collapses on every keystroke, and the
+> build targets current Compose.
 >
-> Changes on top of upstream `1.1.1`:
->
-> - **Fixed the soft keyboard collapsing and reopening on every keystroke** on Compose 1.12. Focus is
->   no longer requested from inside the cell's `onValueChange`, which made Compose tear the IME input
->   session down and start a new one in two separate passes
->   ([upstream issue](https://github.com/composeuisuite/ohteepee/issues/47))
-> - Build migrated to Gradle version catalogs and upgraded to Gradle 9.5 / AGP 9.3.1 / Kotlin 2.4.10 /
->   Compose BOM 2026.08.00
-> - Disambiguated the two `OhTeePeeDefaults.cellConfiguration` overloads, which Kotlin 2.4 rejected as
->   an overload resolution ambiguity — this broke `cellConfiguration()`, the form used in the example
->   below
->
-> **Requirements:** `minSdk` 23 (was 21, raised by `androidx.compose` 1.9+) and `compileSdk` 37.
->
-> Both changes are offered upstream as
-> [#48](https://github.com/composeuisuite/ohteepee/pull/48) and
-> [#49](https://github.com/composeuisuite/ohteepee/pull/49). If they are merged and the original
-> project resumes releases, prefer it over this fork.
+> **Requires `minSdk` 23 and `compileSdk` 37.**
 
 ## Demo
 
@@ -138,28 +122,13 @@ fun OtpInput() {
 }
 ```
 
-This is just the tip of the iceberg when it comes to customization of OhTeePee libray. If you want to see more, definitely check out [this article.](https://medium.com/@ilyas_ipek/d26785d53ab3)
+This is just the tip of the iceberg when it comes to customization of OhTeePee. The
+[sample app](sample) shows every option in context.
 
 ## Todo List
 
 - [x] Read OTP Code directly from SMS
 - [x] Add animations
-
-## Authors
-
-The original authors of OhTeePee:
-
-**Ilyas Ipek**
-
-- Medium: <a href="https://medium.com/@ilyas_ipek" target="_blank">@ilyasipek</a>
-- Github: <a href="https://github.com/ilyasipek" target="_blank">@ilyasipek</a>
-- LinkedIn: <a href="https://www.linkedin.com/in/ilyas-ipek/" target="_blank">@ilyas-ipek</a>
-
-**Tarik Yasar**
-
-- Medium: <a href="https://medium.com/@tyasar" target="_blank">@tyasar</a>
-- Github: <a href="https://github.com/tarikyasar" target="_blank">@tarikyasar</a>
-- LinkedIn: <a href="https://www.linkedin.com/in/tarık-yaşar-b9438514b/" target="_blank">@tarik-yasar</a>
 
 ## Contributing
 
@@ -179,6 +148,6 @@ We are always open to new ideas! To contribute, please check following steps:
 
 ### [LICENSE](LICENSE.md)
 
-OhTeePee is licensed under the Apache License 2.0. This fork keeps that license and the copyright of
-the original authors; the modifications listed at the top of this README are released under the same
-terms.
+OhTeePee is licensed under the Apache License 2.0. This is a modified version of the original work by
+the OhTeePee authors; their copyright and that license are retained, and the modifications are
+released under the same terms.

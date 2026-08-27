@@ -2,7 +2,6 @@
 agp = "9.3.1"
 kotlin = "2.4.10"
 ktlint = "14.2.0"
-googleServices = "4.5.0"
 
 compileSdk = "37"
 minSdk = "23"
@@ -11,7 +10,6 @@ targetSdk = "36"
 activityCompose = "1.13.0"
 composeBom = "2026.08.00"
 coreKtx = "1.19.0"
-firebaseBom = "34.18.0"
 lifecycleRuntimeKtx = "2.11.0"
 
 [libraries]
@@ -26,12 +24,10 @@ androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
-firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
-google-services = { id = "com.google.gms.google-services", version.ref = "googleServices" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }

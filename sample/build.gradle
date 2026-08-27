@@ -1,15 +1,14 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.google.services)
 }
 
 android {
-    namespace 'com.composeuisuite.ohteepee.sample'
+    namespace 'br.com.arleypereira.ohteepee.sample'
     compileSdk libs.versions.compileSdk.get().toInteger()
 
     defaultConfig {
-        applicationId "com.composeuisuite.ohteepee"
+        applicationId "br.com.arleypereira.ohteepee"
         minSdk libs.versions.minSdk.get().toInteger()
         targetSdk libs.versions.targetSdk.get().toInteger()
         versionCode 1
@@ -55,7 +54,4 @@ dependencies {
     implementation libs.androidx.compose.material.icons.core
 
     implementation libs.androidx.activity.compose
-
-    // Firebase
-    implementation platform(libs.firebase.bom)
 }
