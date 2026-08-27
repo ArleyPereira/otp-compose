@@ -1,6 +1,6 @@
 ![](ohteepee_cover.png)
 
-# OhTeePee ![latestVersion](https://img.shields.io/github/v/tag/ArleyPereira/ohteepee?display_name=tag)
+# OhTeePee ![latestVersion](https://img.shields.io/github/v/tag/ArleyPereira/otp-compose?display_name=tag)
 
 > ## About this fork
 >
@@ -37,7 +37,7 @@ repositories {
 Then add OhTeePee dependency to your module build.gradle file.
 
 ```groovy
-implementation "com.github.ArleyPereira:ohteepee:$versionName"
+implementation "com.github.ArleyPereira:otp-compose:$versionName"
 ```
 
 ### Usage

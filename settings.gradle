@@ -12,6 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Otp Field"
+rootProject.name = "otp-compose"
 include ':sample'
-include ':ohteepee'
+include ':otp-compose'

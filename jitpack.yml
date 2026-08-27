@@ -6,4 +6,4 @@
 jdk:
   - openjdk17
 install:
-  - ./gradlew :ohteepee:publishToMavenLocal -Pgroup=com.github.ArleyPereira -Pversion=$VERSION -xtest -xlint
+  - ./gradlew :otp-compose:publishToMavenLocal -Pgroup=com.github.ArleyPereira -Pversion=$VERSION -xtest -xlint
